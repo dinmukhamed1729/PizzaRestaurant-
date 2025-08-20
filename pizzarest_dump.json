@@ -1,0 +1,404 @@
+[
+  {
+    "model": "PizzaRestaurant.restaurant",
+    "pk": 1,
+    "fields": {
+      "created_at": "2025-08-20T08:51:58.361Z",
+      "updated_at": "2025-08-20T08:51:58.361Z",
+      "name": "Жан Плов",
+      "address": "БолекБатыр 1"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.restaurant",
+    "pk": 2,
+    "fields": {
+      "created_at": "2025-08-20T10:18:55.267Z",
+      "updated_at": "2025-08-20T10:18:55.267Z",
+      "name": "LoLoPizza",
+      "address": "Байтурсынова 80"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.restaurant",
+    "pk": 3,
+    "fields": {
+      "created_at": "2025-08-20T10:19:49.848Z",
+      "updated_at": "2025-08-20T10:19:49.848Z",
+      "name": "PizzaHubovich",
+      "address": "Сейфуллина 500"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.restaurant",
+    "pk": 4,
+    "fields": {
+      "created_at": "2025-08-20T10:20:34.689Z",
+      "updated_at": "2025-08-20T10:20:34.689Z",
+      "name": "Доминошка",
+      "address": "пр. Абая 150/1"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.chef",
+    "pk": 1,
+    "fields": {
+      "created_at": "2025-08-20T08:52:40.329Z",
+      "updated_at": "2025-08-20T08:52:40.329Z",
+      "restaurant": 1,
+      "name": "DIN"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.chef",
+    "pk": 2,
+    "fields": {
+      "created_at": "2025-08-20T10:19:15.848Z",
+      "updated_at": "2025-08-20T10:19:15.848Z",
+      "restaurant": 2,
+      "name": "Марио Братишкин"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.chef",
+    "pk": 3,
+    "fields": {
+      "created_at": "2025-08-20T10:20:07.984Z",
+      "updated_at": "2025-08-20T10:20:07.984Z",
+      "restaurant": 3,
+      "name": "Гордон Рамзаев"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.chef",
+    "pk": 4,
+    "fields": {
+      "created_at": "2025-08-20T10:21:08.613Z",
+      "updated_at": "2025-08-20T10:21:08.613Z",
+      "restaurant": 4,
+      "name": "Виталик Пиццайоло"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.ingredient",
+    "pk": 1,
+    "fields": {
+      "created_at": "2025-08-20T08:55:05.218Z",
+      "updated_at": "2025-08-20T08:55:05.218Z",
+      "name": "моцарелла"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.ingredient",
+    "pk": 2,
+    "fields": {
+      "created_at": "2025-08-20T08:55:18.570Z",
+      "updated_at": "2025-08-20T08:55:18.570Z",
+      "name": "пармезан"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.ingredient",
+    "pk": 3,
+    "fields": {
+      "created_at": "2025-08-20T08:55:27.593Z",
+      "updated_at": "2025-08-20T08:55:27.593Z",
+      "name": "горгонзола"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.ingredient",
+    "pk": 4,
+    "fields": {
+      "created_at": "2025-08-20T08:55:36.582Z",
+      "updated_at": "2025-08-20T08:55:36.582Z",
+      "name": "эмменталь"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.ingredient",
+    "pk": 5,
+    "fields": {
+      "created_at": "2025-08-20T08:55:45.982Z",
+      "updated_at": "2025-08-20T08:55:45.982Z",
+      "name": "пепперони"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.ingredient",
+    "pk": 6,
+    "fields": {
+      "created_at": "2025-08-20T08:55:54.359Z",
+      "updated_at": "2025-08-20T08:55:54.359Z",
+      "name": "ананас"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.ingredient",
+    "pk": 7,
+    "fields": {
+      "created_at": "2025-08-20T08:56:02.204Z",
+      "updated_at": "2025-08-20T08:56:02.204Z",
+      "name": "бекон"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.ingredient",
+    "pk": 8,
+    "fields": {
+      "created_at": "2025-08-20T08:56:10.886Z",
+      "updated_at": "2025-08-20T08:56:10.886Z",
+      "name": "грибы"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.ingredient",
+    "pk": 9,
+    "fields": {
+      "created_at": "2025-08-20T08:56:19.468Z",
+      "updated_at": "2025-08-20T08:56:19.468Z",
+      "name": "томатный соус"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.ingredient",
+    "pk": 10,
+    "fields": {
+      "created_at": "2025-08-20T08:56:33.869Z",
+      "updated_at": "2025-08-20T08:56:33.869Z",
+      "name": "базилик"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.ingredient",
+    "pk": 11,
+    "fields": {
+      "created_at": "2025-08-20T10:21:47.031Z",
+      "updated_at": "2025-08-20T10:21:47.031Z",
+      "name": "слезы программистов"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.ingredient",
+    "pk": 12,
+    "fields": {
+      "created_at": "2025-08-20T10:22:37.946Z",
+      "updated_at": "2025-08-20T10:22:37.946Z",
+      "name": "экстракт грейпфрутовых косточек"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.ingredient",
+    "pk": 15,
+    "fields": {
+      "created_at": "2025-08-20T10:23:23.898Z",
+      "updated_at": "2025-08-20T10:23:23.899Z",
+      "name": "магия итальянских бабушек"
+    }
+  },
+  {
+    "model": "PizzaRestaurant.pizza",
+    "pk": 1,
+    "fields": {
+      "created_at": "2025-08-20T08:57:14.900Z",
+      "updated_at": "2025-08-20T08:57:14.900Z",
+      "name": "Карбонара",
+      "cheese": "моцарелла",
+      "thickness": "тонкое",
+      "restaurant": 1,
+      "secret_ingredient": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "PizzaRestaurant.pizza",
+    "pk": 3,
+    "fields": {
+      "created_at": "2025-08-20T08:57:53.224Z",
+      "updated_at": "2025-08-20T08:57:53.224Z",
+      "name": "Четыре сыра",
+      "cheese": "моцарелла",
+      "thickness": "пышное",
+      "restaurant": 1,
+      "secret_ingredient": [
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "PizzaRestaurant.pizza",
+    "pk": 4,
+    "fields": {
+      "created_at": "2025-08-20T08:58:21.323Z",
+      "updated_at": "2025-08-20T08:58:21.323Z",
+      "name": "Гавайская",
+      "cheese": "моцарелла",
+      "thickness": "классическое",
+      "restaurant": 1,
+      "secret_ingredient": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  {
+    "model": "PizzaRestaurant.pizza",
+    "pk": 5,
+    "fields": {
+      "created_at": "2025-08-20T08:58:43.473Z",
+      "updated_at": "2025-08-20T09:00:52.474Z",
+      "name": "Пепперони",
+      "cheese": "моцарелла",
+      "thickness": "пышное",
+      "restaurant": 1,
+      "secret_ingredient": [
+        8,
+        9,
+        10,
+        3
+      ]
+    }
+  },
+  {
+    "model": "PizzaRestaurant.pizza",
+    "pk": 6,
+    "fields": {
+      "created_at": "2025-08-20T10:24:19.824Z",
+      "updated_at": "2025-08-20T10:24:19.824Z",
+      "name": "Margherita",
+      "cheese": "Моцарелла",
+      "thickness": "тонкое",
+      "restaurant": 1,
+      "secret_ingredient": [
+        12
+      ]
+    }
+  },
+  {
+    "model": "PizzaRestaurant.pizza",
+    "pk": 7,
+    "fields": {
+      "created_at": "2025-08-20T10:26:13.209Z",
+      "updated_at": "2025-08-20T10:26:13.209Z",
+      "name": "Margherita",
+      "cheese": "Моцарелла",
+      "thickness": "тонкое",
+      "restaurant": 2,
+      "secret_ingredient": [
+        12
+      ]
+    }
+  },
+  {
+    "model": "PizzaRestaurant.pizza",
+    "pk": 8,
+    "fields": {
+      "created_at": "2025-08-20T10:26:17.548Z",
+      "updated_at": "2025-08-20T10:26:17.548Z",
+      "name": "Margherita",
+      "cheese": "Моцарелла",
+      "thickness": "тонкое",
+      "restaurant": 3,
+      "secret_ingredient": [
+        12
+      ]
+    }
+  },
+  {
+    "model": "PizzaRestaurant.pizza",
+    "pk": 9,
+    "fields": {
+      "created_at": "2025-08-20T10:26:21.587Z",
+      "updated_at": "2025-08-20T10:26:21.587Z",
+      "name": "Margherita",
+      "cheese": "Моцарелла",
+      "thickness": "тонкое",
+      "restaurant": 4,
+      "secret_ingredient": [
+        12
+      ]
+    }
+  },
+  {
+    "model": "PizzaRestaurant.pizza",
+    "pk": 11,
+    "fields": {
+      "created_at": "2025-08-20T10:27:38.350Z",
+      "updated_at": "2025-08-20T10:27:38.350Z",
+      "name": "Дедлайн",
+      "cheese": "Чеддер",
+      "thickness": "пышное",
+      "restaurant": 3,
+      "secret_ingredient": [
+        11
+      ]
+    }
+  },
+  {
+    "model": "PizzaRestaurant.pizza",
+    "pk": 12,
+    "fields": {
+      "created_at": "2025-08-20T10:28:17.509Z",
+      "updated_at": "2025-08-20T10:28:17.509Z",
+      "name": "Четыре чиза",
+      "cheese": "Микс четырех сыров",
+      "thickness": "классическое",
+      "restaurant": 3,
+      "secret_ingredient": [
+        15
+      ]
+    }
+  },
+  {
+    "model": "PizzaRestaurant.pizza",
+    "pk": 13,
+    "fields": {
+      "created_at": "2025-08-20T10:28:20.316Z",
+      "updated_at": "2025-08-20T10:28:20.316Z",
+      "name": "Четыре чиза",
+      "cheese": "Микс четырех сыров",
+      "thickness": "классическое",
+      "restaurant": 4,
+      "secret_ingredient": [
+        15
+      ]
+    }
+  },
+  {
+    "model": "PizzaRestaurant.pizza",
+    "pk": 14,
+    "fields": {
+      "created_at": "2025-08-20T10:28:22.962Z",
+      "updated_at": "2025-08-20T10:28:22.962Z",
+      "name": "Четыре чиза",
+      "cheese": "Микс четырех сыров",
+      "thickness": "классическое",
+      "restaurant": 2,
+      "secret_ingredient": [
+        15
+      ]
+    }
+  },
+  {
+    "model": "PizzaRestaurant.pizza",
+    "pk": 15,
+    "fields": {
+      "created_at": "2025-08-20T11:27:54.149Z",
+      "updated_at": "2025-08-20T11:27:54.149Z",
+      "name": "string",
+      "cheese": "string",
+      "thickness": "классическое",
+      "restaurant": 1,
+      "secret_ingredient": [
+        1
+      ]
+    }
+  }
+]
