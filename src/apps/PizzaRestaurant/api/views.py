@@ -12,6 +12,7 @@ from src.apps.PizzaRestaurant.models import (
 from src.apps.PizzaRestaurant.schemas import (
     RestaurantSchema, RestaurantOutSchema, ChefOutSchema, ChefInSchema, PizzaOutSchema, IngredientOutSchema,
     IngredientSchema, PizzaSchema, PizzaInSchema, ReviewOutSchema, ReviewInSchema, RestaurantMenuSchema,
+    PizzaPatchSchema,
 )
 from src.apps.common.utils import update_model_instance
 
@@ -98,6 +99,12 @@ class PizzaController:
 
     @route.put(path='{int:pizza_id}/', response=PizzaOutSchema)
     def update_pizza(self, request, pizza_id: int, body: PizzaSchema):
+        pizza = get_object_or_404(Pizza, id=pizza_id)
+        update_model_instance(pizza, body)
+        return pizza
+
+    @route.patch(path='{int:pizza_id}/', response=PizzaOutSchema)
+    def update_pizza(self, request, pizza_id: int, body: PizzaPatchSchema):
         pizza = get_object_or_404(Pizza, id=pizza_id)
         update_model_instance(pizza, body)
         return pizza

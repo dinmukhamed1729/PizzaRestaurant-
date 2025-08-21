@@ -1,6 +1,6 @@
-from typing import List
+from typing import List, Optional
 
-from ninja import ModelSchema, Field
+from ninja import ModelSchema, Field, Schema
 
 from src.apps.PizzaRestaurant.models import Chef, Restaurant, Pizza, Ingredient, Review
 
@@ -53,6 +53,13 @@ class PizzaSchema(ModelSchema):
     class Config:
         model = Pizza
         model_fields = ['name', 'cheese', 'thickness', 'secret_ingredient']
+
+
+class PizzaPatchSchema(Schema):
+    name: Optional[str] = None
+    cheese: Optional[str] = None
+    thickness: Optional[str] = None
+    secret_ingredient: Optional[List[int]] = None
 
 
 class PizzaNestedSchema(ModelSchema):
