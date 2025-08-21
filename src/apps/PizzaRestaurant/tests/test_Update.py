@@ -1,8 +1,4 @@
-import pytest
-from django.test import Client
-
-from src.apps.PizzaRestaurant.models import Pizza, Ingredient, Restaurant, Chef
-from src.apps.PizzaRestaurant.tests.fixture import client, restaurant, chef, pizza, ingredient
+from src.apps.PizzaRestaurant.tests.fixture import *
 from src.apps.common.enums import Thickness
 
 
@@ -15,7 +11,7 @@ def test_update_pizza(client: Client, pizza: Pizza, ingredient: Ingredient):
         "thickness": Thickness.CLASSIC,
         "secret_ingredient": [ingredient.id],
     }
-    response = client.put(url, payload, content_type="application/json")
+    response = client.patch(url, payload, content_type="application/json")
     assert response.status_code == 200
 
     pizza.refresh_from_db()

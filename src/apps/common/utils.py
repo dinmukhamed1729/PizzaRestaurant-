@@ -1,6 +1,8 @@
-def update_model_instance(instance, data):
-    data_dict = data.dict(exclude_unset=True)
+from ninja import Schema
 
+
+def update_model_instance(instance, data: Schema):
+    data_dict = data.dict(exclude_unset=True)
     for attr, value in data_dict.items():
         if hasattr(instance, attr):
             field = instance._meta.get_field(attr)
@@ -11,4 +13,3 @@ def update_model_instance(instance, data):
 
     instance.save()
     return instance
-

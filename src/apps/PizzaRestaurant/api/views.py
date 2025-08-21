@@ -4,17 +4,16 @@ from ninja_extra import (
     route
 )
 
-from src.apps.PizzaRestaurant import selectors
 from src.apps.PizzaRestaurant.models import (
-    Restaurant,
-    Chef, Pizza, Ingredient, Review,
+    Review,
 )
-from src.apps.PizzaRestaurant.schemas import (
+from src.apps.PizzaRestaurant.schemas.schemas import (
     RestaurantSchema, RestaurantOutSchema, ChefOutSchema, ChefInSchema, PizzaOutSchema, IngredientOutSchema,
     IngredientSchema, PizzaSchema, PizzaInSchema, ReviewOutSchema, ReviewInSchema, RestaurantMenuSchema,
     PizzaPatchSchema,
 )
-from src.apps.common.utils import update_model_instance
+from src.apps.PizzaRestaurant.selectors import selectors
+from src.apps.PizzaRestaurant.services import services
 
 
 @api_controller(
@@ -24,25 +23,22 @@ from src.apps.common.utils import update_model_instance
 class RestaurantController:
     @route.get(response=list[RestaurantOutSchema])
     def get_restaurants(self, request, ):
-        return Restaurant.objects.select_related("chef").all()
+        return selectors.get_all_restaurants_with_chefs()
 
     @route.post(response=RestaurantOutSchema)
     def create_restaurant(self, request, body: RestaurantSchema):
-        return Restaurant.objects.create(**body.dict())
+        return services.create_restaurant(body)
 
     @route.put(path='{int:restaurant_id}/', response=RestaurantOutSchema)
     def update_restaurant(self, request, restaurant_id: int, body: RestaurantSchema):
-        restaurant = get_object_or_404(Restaurant, id=restaurant_id)
-        update_model_instance(restaurant, body)
-        return restaurant
+        return services.update_restaurant(restaurant_id=restaurant_id, data=body)
 
     @route.delete(path='{int:restaurant_id}/', response={200: None}, )
     def delete_restaurant(self, request, restaurant_id: int):
-        restaurant = get_object_or_404(Restaurant, id=restaurant_id)
-        restaurant.delete()
+        services.delete_restaurant(restaurant_id=restaurant_id)
         return 200, None
 
-    @route.get(path='{int:restaurant_id}/menu', response=RestaurantMenuSchema)
+    @route.get(path='{int:restaurant_id}/menu/', response=RestaurantMenuSchema)
     def get_restaurant_menu(self, request, restaurant_id: int):
         return selectors.get_restaurant_menu(restaurant_id)
 
@@ -54,26 +50,19 @@ class RestaurantController:
 class ChefController:
     @route.get(response=list[ChefOutSchema])
     def get_chefs(self, request, ):
-        return Chef.objects.select_related('restaurant').all()
+        return selectors.get_all_chefs_with_restaurant()
 
     @route.post(response=ChefOutSchema)
     def create_chef(self, request, body: ChefInSchema):
-        chef = Chef.objects.create(
-            restaurant_id=body.restaurant_id,
-            **body.model_dump(exclude={"restaurant_id"})  # Pydantic v2
-        )
-        return chef
+        return services.create_chef_with_restaurant(body=body)
 
     @route.put(path='{int:chef_id}/', response=ChefOutSchema)
     def update_chef(self, request, chef_id: int, body: ChefInSchema):
-        chef = get_object_or_404(Chef, id=chef_id)
-        update_model_instance(chef, body)
-        return chef
+        return services.update_chef(chef_id=chef_id, body=body)
 
     @route.delete(path='{int:chef_id}/', response={200: None})
     def delete_chef(self, request, chef_id: int):
-        chef = get_object_or_404(Chef, id=chef_id)
-        chef.delete()
+        services.delete_chef(chef_id=chef_id)
         return 200, None
 
 
@@ -84,35 +73,23 @@ class ChefController:
 class PizzaController:
     @route.get(response=list[PizzaOutSchema])
     def get_pizzas(self, request, ):
-        return Pizza.objects.prefetch_related('secret_ingredient').select_related('restaurant').all()
+        return selectors.get_all_pizza_with_secret_ingredient_and_restaurant()
 
     @route.post(response=PizzaOutSchema)
     def create_pizza(self, request, body: PizzaInSchema):
-        pizza = Pizza.objects.create(
-            restaurant_id=body.restaurant_id,
-            **body.model_dump(exclude={"restaurant_id", "secret_ingredient"})
-        )
-        if body.secret_ingredient:
-            pizza.secret_ingredient.set(body.secret_ingredient)
-
-        return pizza
+        return services.create_pizza_with_restaurant_and_secret_ingredient(body)
 
     @route.put(path='{int:pizza_id}/', response=PizzaOutSchema)
     def update_pizza(self, request, pizza_id: int, body: PizzaSchema):
-        pizza = get_object_or_404(Pizza, id=pizza_id)
-        update_model_instance(pizza, body)
-        return pizza
+        return services.update_pizza(pizza_id=pizza_id, body=body)
 
     @route.patch(path='{int:pizza_id}/', response=PizzaOutSchema)
-    def update_pizza(self, request, pizza_id: int, body: PizzaPatchSchema):
-        pizza = get_object_or_404(Pizza, id=pizza_id)
-        update_model_instance(pizza, body)
-        return pizza
+    def patch_pizza(self, request, pizza_id: int, body: PizzaPatchSchema):
+        return services.update_pizza(pizza_id=pizza_id, body=body)
 
     @route.delete(path='{int:pizza_id}/', response={200: None})
     def delete_pizza(self, request, pizza_id: int):
-        pizza = get_object_or_404(Pizza, id=pizza_id)
-        pizza.delete()
+        services.delete_pizza(pizza_id=pizza_id)
         return 200, None
 
 
@@ -123,11 +100,11 @@ class PizzaController:
 class IngredientController:
     @route.get(response=list[IngredientOutSchema])
     def get_ingredients(self, request, ):
-        return Ingredient.objects.all()
+        return selectors.get_all_ingredients()
 
     @route.post(response=IngredientOutSchema)
     def create_ingredient(self, request, body: IngredientSchema):
-        return Ingredient.objects.create(**body.dict())
+        return services.create_ingredient(body=body)
 
 
 @api_controller(
@@ -137,12 +114,12 @@ class IngredientController:
 class ReviewController:
     @route.get(response=list[ReviewOutSchema])
     def get_reviews(self, request, ):
-        return Review.objects.all()
+        return services.get_all_reviews()
 
     @route.post(response=ReviewOutSchema)
     def create_review(self, request, body: ReviewInSchema):
-        review = Review.objects.create(
-            restaurant_id=body.restaurant_id,
-            **body.model_dump(exclude={"restaurant_id"})
-        )
-        return review
+        return services.create_review_with_restaurant(body=body)
+
+    @route.get(path='{int:review_id}', response=ReviewOutSchema)
+    def get_reviews_by_id(self, request, review_id: int):
+        return get_object_or_404(Review, id=review_id)
